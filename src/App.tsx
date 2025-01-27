@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Auth from "./pages/Auth";
+import GetStarted from "./pages/GetStarted";
 
 const queryClient = new QueryClient();
 
@@ -52,9 +53,10 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<Index />} />
             <Route
-              path="/"
-              element={session ? <Index /> : <Navigate to="/auth" />}
+              path="/get-started"
+              element={session ? <GetStarted /> : <Navigate to="/auth" />}
             />
             <Route
               path="/pricing"
@@ -66,7 +68,7 @@ const App = () => {
             />
             <Route
               path="/auth"
-              element={!session ? <Auth /> : <Navigate to="/" />}
+              element={!session ? <Auth /> : <Navigate to="/get-started" />}
             />
           </Routes>
         </BrowserRouter>
