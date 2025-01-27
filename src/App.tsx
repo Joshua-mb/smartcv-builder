@@ -53,7 +53,11 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* Public routes that don't require authentication */}
             <Route path="/" element={<Index />} />
+            <Route path="/auth" element={!session ? <Auth /> : <Navigate to="/get-started" />} />
+
+            {/* Protected routes that require authentication */}
             <Route
               path="/get-started"
               element={session ? <GetStarted /> : <Navigate to="/auth" />}
@@ -65,10 +69,6 @@ const App = () => {
             <Route
               path="/about"
               element={session ? <About /> : <Navigate to="/auth" />}
-            />
-            <Route
-              path="/auth"
-              element={!session ? <Auth /> : <Navigate to="/get-started" />}
             />
           </Routes>
         </BrowserRouter>
